@@ -1,0 +1,5 @@
+<app-banner (buttonClick)="openSideBar()"></app-banner>
+<app-sidebar
+  [isClosed]="!showSideBar"
+  (closeSideBarEvent)="closeSideBar()"
+></app-sidebar>
