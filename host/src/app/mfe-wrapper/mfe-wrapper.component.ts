@@ -1,5 +1,5 @@
 import { loadRemoteModule } from '@angular-architects/module-federation';
-import { Component, Injector, Input, ViewContainerRef, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, Output, ViewContainerRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-mfe-wrapper',
@@ -10,6 +10,8 @@ import { Component, Injector, Input, ViewContainerRef, ViewEncapsulation } from 
 export class MfeWrapperComponent {
   @Input() remoteName!: string;
   @Input() modulePath!: string;
+  @Output() clickClose = new EventEmitter<any>();
+
 
   constructor(private vcr: ViewContainerRef, private injector: Injector) { }
 
@@ -25,7 +27,13 @@ export class MfeWrapperComponent {
 
       this.vcr.clear();
       const appComponent = this.vcr.createComponent(AppComponent);
-      appComponent.instance && ((appComponent.instance as any).context = { status: 'Dados enviados para o MFE' });
+      if (appComponent.instance) {
+        (appComponent.instance as any).context = { status: 'Dados enviados para o MFE' };
+        // Escutando eventos disparados na MFE
+        (appComponent.instance as any).clickClose.subscribe((event: any) => {
+          this.clickClose.emit(event);
+        });
+      }
     }
     catch (error) {
       console.error("Erro ao carregar o MFE:", error);

@@ -9,6 +9,7 @@
     padding: 20px;
     transition: transform 0.3s ease-in-out;
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    overflow: auto;
   }
   
   .sidebar.closed {

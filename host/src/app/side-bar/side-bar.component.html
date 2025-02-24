@@ -1,9 +1,10 @@
 <div class="sidebar" [class.closed]="isClosed">
-  <button class="toggle-btn" (click)="closeSideBar()">
+  <!-- <button class="toggle-btn" (click)="closeSideBar()">
     {{ isClosed ? '☰' : '✖' }}
-  </button>
+  </button> -->
   <app-mfe-wrapper
     remoteName="mfe1"
     modulePath="./pComponent"
+    (clickClose)="closeSideBar()"
   ></app-mfe-wrapper>
 </div>
