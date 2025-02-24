@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,16 @@ import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent implements OnInit {
   @Input() context: any;
+  @Output() clickClose = new EventEmitter();
   title = 'mfe1';
 
   ngOnInit(): void {
     console.log('CONTEXTO MFE', this.context);
+  }
+
+  close() {
+    this.clickClose.emit();
+    console.log('mfe clickClose evento emitido');
   }
 
 }

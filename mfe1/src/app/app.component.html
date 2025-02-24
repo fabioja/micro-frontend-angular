@@ -1,8 +1,13 @@
-<main>
-  <h1>{{context?.status ?? 'No context'}}</h1>
+<main class="main">
+  <app-header (clickClose)="close()"></app-header>
+  <div class="header">
+    <h1>{{context?.status ?? 'No context'}}</h1>
+  </div>
+  <div class="footer">
+    <app-banner-mfe></app-banner-mfe>
+    <app-banner-footer></app-banner-footer>
+  </div>
 </main>
-
-<app-banner-mfe></app-banner-mfe>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
